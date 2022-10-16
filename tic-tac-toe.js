@@ -89,19 +89,21 @@ window.addEventListener("DOMContentLoaded",() =>{
       
   };
 
-  const restart=()=>{
+  /*const restart=()=>{
     //status.textContent="Hello";
     letterOrderings.forEach((letter,i)=>{
-      spaces[i]="";
+      letterOrderings[i]="";
     });
     console.log(letterOrderings);
-    boxes.forEach((box)=>{
-      box.querySelector(xtextinfo).innerText="";
-      box.querySelector(otextinfo).innerText="";
-    });
-    status.innerText="Move your mouse over a square and click to play an X or an O.";
-  };  
 
+    for(var box of boxes){
+      box.removeChild(box.lastChild);
+      box.removeChild(box.firstChild);
+      box.innerText="";
+      status.innerText="Move your mouse over a square and click to play an X or an O.";  }
+
+    };*/
+    
 var currPlayer="X";
  var filledIndex=[];
  let letterOrderings=["","","","","","","","",""];
@@ -158,53 +160,16 @@ for (const box of boxes) {
   });
 }
 
-btn.addEventListener("click",restart);
-});
+btn.addEventListener("click",function(){
+  letterOrderings=["","","","","","","","","",""];
+  for(var box of boxes){
+    while(box.firstChild){
+      box.removeChild(box.firstChild);
+    }
+  }
+  status.classList.remove("you-won");
+  status.innerText="Move your mouse over a square and click to play an X or an O.";  
 
-  //var currentPlayer="X";
-  //var cells = ["","","","","","","","",""];
-  //const cellUpdate=function(index){
-  //  cells[index]=currentPlayer;
- // }
- /*for(const arr of boxes){
-  let currPlayer="O";
-  var filled=[];
-  var symbols=["X","O"];
-  var activePlayers=0;
-  let text=document.createElement("p");
-  let textinfo=document.createTextNode("ht");
-  game.appendChild(text);
-  text.appendChild(textinfo);
-  text.setAttribute("class","`:square.${currPlayer}`");
-  text.classList.add(`:square.${currPlayer}`);
-}//remember for */
-/*(const box of boxes){
-  box.addEventListener("click",function(){
-    if(box.innerHTML==""){
-      letterOrderings.push(currPlayer);
-      if(currPlayer=="X"){
-        let xtext=document.createElement("p");
-        let xtextinfo=document.createTextNode("");
-        xtextinfo.textContent=currPlayer;
-        box.appendChild(xtext);
-        xtext.appendChild(xtextinfo);
-        xtext.setAttribute("class",":square.X");
-        xtext.classList.add(":square.X");
-        letterOrderings=letterOrderings.splice(boxes.indexOf(box), 1, currPlayer);
-        currPlayer="O";
-      }else if(currPlayer=="O"){
-        let otext=document.createElement("p");
-        let otextinfo=document.createTextNode("");
-        otextinfo.textContent=currPlayer;
-       //s box.classList.remove("xtext");
-        box.appendChild(otext);
-        otext.appendChild(otextinfo);
-        otext.setAttribute("class",":square.O");
-        otext.classList.add(":square.O");
-        letterOrderings=letterOrderings.splice(boxes.indexOf(box), 1, currPlayer);
-        currPlayer="X";
-      };*/
-     // filledIndex.push((boxes.indexOf(box)));
-  //}
-//});
-//console.log(filledIndex);
+
+});})
+
